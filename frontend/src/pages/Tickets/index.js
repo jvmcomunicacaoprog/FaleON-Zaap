@@ -11,6 +11,11 @@ import { i18n } from "../../translate/i18n";
 import Hidden from "@material-ui/core/Hidden";
 
 import logo from "../../assets/Logo_circle.png";
+import { getProductMainLogo } from "../../config";
+
+const getMainLogo = () => {
+  return getProductMainLogo(logo);
+}
 
 const useStyles = makeStyles((theme) => ({
   chatContainer: {
@@ -95,7 +100,7 @@ const Chat = () => {
                   {/* <Paper square variant="outlined" className={classes.welcomeMsg}> */}
                   <span>
                     <center>
-                      <img src={logo} width="50%" alt=""/>
+                      <img src={getMainLogo()} width="50%" alt=""/>
                     </center>
                     {i18n.t("chat.noTicketMessage")}
                     </span>

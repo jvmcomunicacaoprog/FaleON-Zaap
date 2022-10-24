@@ -30,8 +30,13 @@ import toastError from "../errors/toastError";
 
 import logodash from "../assets/logo-dash.png";
 import { system } from "../../package.json";
+import { getClientLogoDash } from "../config";
 
 const drawerWidth = 240;
+
+const getLogoDash = () => {
+  return getClientLogoDash(logodash);
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -202,7 +207,7 @@ const LoggedInLayout = ({ children }) => {
         open={drawerOpen}
       >
         <div className={classes.toolbarIcon}>
-          <img src={logodash} alt="logo" />
+          <img src={getLogoDash()} alt="logo" />
           <IconButton color="secondary" onClick={() => setDrawerOpen(!drawerOpen)}>
             <ChevronLeftIcon />
           </IconButton>
@@ -221,7 +226,7 @@ const LoggedInLayout = ({ children }) => {
       <AppBar
         position="absolute"
         className={clsx(classes.appBar, drawerOpen && classes.appBarShift)}
-        color={process.env.NODE_ENV === "development" ? "inherit" : "primary"}
+        color={process.env.NODE_ENV === "development" ? "primary" : "primary"}
       >
         <Toolbar variant="dense" className={classes.toolbar}>
           <IconButton
@@ -243,9 +248,9 @@ const LoggedInLayout = ({ children }) => {
             noWrap
             className={classes.title}
           >
-            {system.name}
+            {system.product}
             <span className={classes.systemCss}>
-              {"(v"}{system.version}{")"}
+              {"(v"}{system.versionSystem}{")"}
             </span>
           </Typography>
           {user.id && <NotificationsPopOver />}
